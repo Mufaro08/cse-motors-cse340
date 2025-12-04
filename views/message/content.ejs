@@ -1,0 +1,31 @@
+<!--Content Heading-->
+<% if (title) { %>
+    <h1><%= title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+<h2><%= locals.message_subject %></h2>
+
+<%- messages() %>
+
+<ul>
+    <li>Subject: <%= locals.message_subject %></li>
+    <li>From: <%= locals.full_name %></li>
+    <li><p>Message: </p>
+        <p><%= locals.message_body %></p>
+    </li>  
+</ul>
+
+<hr>
+<ul>
+    <li><a href="/message/inbox">Return to Inbox</a></li>
+    <li><a href="/message/reply/<%=locals.message_id%>">Reply</a></li>
+    <% if (!locals.message_read) { %>
+        <li><a href="/message/markread/<%=locals.message_id%>">Mark as Read</a></li>
+    <% } %>
+    <% if (!locals.message_archived) { %>
+        <li><a href="/message/archive/<%=locals.message_id%>">Archive Message</a></li>
+    <% } %>
+    <li><a href="/message/delete/<%=locals.message_id%>">Delete Message</a></li>
+</ul>

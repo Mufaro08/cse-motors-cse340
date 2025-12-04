@@ -1,0 +1,17 @@
+<!--Content Heading-->
+<% if (title) { %>
+    <h1><%= title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+<%- messages() %>
+
+<h2><%= locals.fullname %> Inbox</h2>
+
+<ul>
+    <li><a href="/message/add">Create New Message</a></li>
+    <li><a href="/message/archived">View <%= locals.archivedNotification %></a></li>
+</ul>
+
+<%- locals.messageTable %>
